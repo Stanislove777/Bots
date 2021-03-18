@@ -10,12 +10,12 @@ import telebot
 import re
 import json
 import requests
-from config import tokens
+import config
 
 # GIPHY Token - https://developers.giphy.com/docs/sdk
 # Telegram Token - @BotFather
-tokenTG = config.['TOKEN_TG']
-tokenGI = config.['TOKEN_GI']
+tokenTG = config.tokens['TOKEN_TG']
+tokenGI = config.tokens['TOKEN_GI']
 bot = telebot.TeleBot(tokenTG)
 
 # Обработка Комманд
