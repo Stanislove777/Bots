@@ -15,10 +15,10 @@ def handle_start_help(message):
 def send_message(message):
 	name = message.from_user.username
 	if message.text.isdigit() and name in config.whitelist:
-		connect_db.sql_query(message.text)
+		sql_query(message.text)
 
-		name_csv = message.text + '.csv'
 		name_xlsx = message.text + '.xlsx'
+		name_csv = message.text + '.csv'
 
 		with open(name_csv, 'rb') as csv:
 			bot.send_document(message.chat.id, csv)
@@ -35,11 +35,10 @@ def send_message(message):
 				path_xlsx.unlink()
 			except OSError as e:
 				print("Error: %s: %s" % (path_xlsx, e.strerror))
+
 	elif name not in config.whitelist:
 		bot.send_message(message.chat.id, 'ERROR: No authorization')
 	else:
 		bot.send_message(message.chat.id, 'ERROR: Wrong number')
-
-
 
 bot.polling()
